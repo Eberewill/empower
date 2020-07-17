@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Routes from "./components/routes/Routes";
 import Posts from "./components/pages/Posts";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route exact path="/" component={Posts} />
             <Route component={Routes} />
           </Switch>
+          <Footer />
         </Fragment>
       </Router>
     </Provider>

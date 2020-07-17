@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  loading: false,
+  loading: true,
   posts: {},
   post: {},
   error: {},
@@ -18,18 +18,15 @@ export default function (state = initialState, action) {
     case POST_LOADED:
       return {
         ...state,
-        loading: false,
         post: payload,
+        loading: false,
       };
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: true,
-      };
+
     case POSTS_LOADED:
       return {
         ...state,
         posts: payload,
+        loading: false,
       };
     case POST_ERROR:
       return {

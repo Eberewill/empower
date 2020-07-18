@@ -22,7 +22,7 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-// Load SinglePost By Slog
+// Load SinglePost By Slug
 export const loadPost = (slug) => async (dispatch) => {
   try {
     const res = await axios.get(

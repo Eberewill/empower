@@ -1,20 +1,36 @@
-import React from "react";
+import React, { Fragment, useEffect } from "react";
+import PropTypes from "prop-types";
 import "../../styles/main.css";
 
-const Post = () => {
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import "../../styles/main.css";
+import { loadPost } from "../../actions/post";
+import Spinner from "../../components/layout/Spinner";
+
+const Post = ({ loadPost, post: { loading, post }, match }) => {
+  useEffect(() => {
+    loadPost(match.params.slug);
+  }, [loadPost]);
+  if (loading)
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   return (
-    <div class="h-64">
-      <div class="p-4 m-4 bg-green-600">
-        <h1 class="text-2xl font-bold text-white">Tailwind CSS Demo</h1>
-      </div>
-      <div class="p-4 m-4 bg-green-300 h-full">
-        <h2 class="text-green-900">Have much fun using Tailwind CSS</h2>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          My Tailwind Button
-        </button>
-      </div>
-    </div>
+    <>
+      <h1>post id is: </h1>
+      {post}
+    </>
   );
 };
+Post.propTypes = {
+  loadPost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
 
-export default Post;
+export default connect(mapStateToProps, { loadPost })(Post);

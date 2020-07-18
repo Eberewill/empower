@@ -7,7 +7,7 @@ const Routes = (props) => {
   return (
     <section className="container">
       <Switch>
-        <Route exact path="/post/:id" component={Post} />
+        <Route exact path="/post/:slug" component={Post} />
         <Route component={NotFound} />
       </Switch>
     </section>
